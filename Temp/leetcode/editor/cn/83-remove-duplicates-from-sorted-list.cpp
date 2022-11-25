@@ -22,12 +22,14 @@ public:
         auto slow = head;
         auto fast = head;
         while (fast != nullptr) {
-            if (slow != fast) {
+            if (slow->val != fast->val) {
                 slow->next = fast;
                 slow = slow->next;
             }
             fast = fast->next;
         }
+        if (slow != nullptr)
+            slow->next = fast;
         return head;
     }
 };
@@ -35,4 +37,13 @@ public:
 
 int main() {
     Solution s = Solution();
+    int arr[] = {1, 1, 2, 3, 3};
+    auto *l1 = new ListNode();
+    auto *p = l1;
+    for (auto &item: arr) {
+        p->next = new ListNode(item);
+        p = p->next;
+    }
+    s.deleteDuplicates(l1->next);
+    cout << 2;
 }
